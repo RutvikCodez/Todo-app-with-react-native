@@ -6,13 +6,21 @@ import { LinearGradient } from "expo-linear-gradient";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Ionicons } from "@expo/vector-icons";
 import ProgressState from "@/components/ProgressState";
+import Preferences from "@/components/Preferences";
+import DangerZone from "@/components/DangerZone";
 
 const Settings = () => {
-  const [isAutoSync, setIsAutoSync] = useState(true);
-  const [isNotificationEnabled, setIsNotificationEnabled] = useState(true);
-  const { colors, isDarkMode, toggleDarkMode } = useTheme();
-  const { container, safeArea, header, titleContainer, iconContainer, title, scrollView, content } =
-    createSettingsStyles(colors);
+  const { colors } = useTheme();
+  const {
+    container,
+    safeArea,
+    header,
+    titleContainer,
+    iconContainer,
+    title,
+    scrollView,
+    content,
+  } = createSettingsStyles(colors);
   const { gradients } = colors;
   return (
     <LinearGradient colors={gradients.background} style={container}>
@@ -25,8 +33,14 @@ const Settings = () => {
             <Text style={title}>Settings</Text>
           </View>
         </View>
-        <ScrollView style={scrollView} contentContainerStyle={content} showsVerticalScrollIndicator={false}>
+        <ScrollView
+          style={scrollView}
+          contentContainerStyle={content}
+          showsVerticalScrollIndicator={false}
+        >
           <ProgressState />
+          <Preferences />
+          <DangerZone />
         </ScrollView>
       </SafeAreaView>
     </LinearGradient>
